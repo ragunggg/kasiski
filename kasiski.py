@@ -1,24 +1,24 @@
 import re
 
 def gcd(*args):
-  if len(args) == 1:
-    return args[0]
-  elif len(args) == 2:
-    x, y = args
-    if x<y:
-      return gcd(y,x)
-    elif y==0:
-      return x
+    if len(args) == 1:
+        return args[0]
+    elif len(args) == 2:
+        x, y = args
+        if x<y:
+            return gcd(y,x)
+        elif y==0:
+            return x
+        else:
+            return gcd(y,x%y)
     else:
-      return gcd(y,x%y)
-  else:
-    return gcd(gcd(args[0],args[1]),*args[2:])
+        return gcd(gcd(args[0],args[1]),*args[2:])
 
 def kasiski(**kwargs):
-  for key, value in kwargs.items():
-    diff = [value[i]-value[i-1] for i in range(1,len(value))]
-    kwargs[key] = gcd(*diff)
-  return kwargs
+    for key, value in kwargs.items():
+        diff = [value[i]-value[i-1] for i in range(1,len(value))]
+        kwargs[key] = gcd(*diff)
+    return kwargs
 
 def main():
     with open('Chiper Text.txt', 'r') as f:
